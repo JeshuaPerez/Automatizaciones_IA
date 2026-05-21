@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Justificación de Inasistencia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset & tokens ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --brand:      #2563eb;
+      --brand-dark: #1d4ed8;
+      --success:    #16a34a;
+      --error:      #dc2626;
+      --bg:         #f1f5f9;
+      --surface:    #ffffff;
+      --border:     #cbd5e1;
+      --text:       #1e293b;
+      --muted:      #64748b;
+      --radius:     10px;
+      --shadow:     0 4px 24px rgba(0,0,0,.08);
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 2rem 1rem 4rem;
+    }
+
+    /* ── Card ── */
+    .card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      width: 100%;
+      max-width: 560px;
+      overflow: hidden;
+    }
+
+    .card-header {
+      background: var(--brand);
+      padding: 1.75rem 2rem;
+      color: #fff;
+    }
+    .card-header h1 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+    .card-header p {
+      margin-top: .4rem;
+      font-size: .875rem;
+      opacity: .85;
+    }
+
+    .card-body { padding: 2rem; }
+
+    /* ── Form layout ── */
+    .field { margin-bottom: 1.25rem; }
+
+    label {
+      display: block;
+      font-size: .85rem;
+      font-weight: 600;
+      margin-bottom: .4rem;
+      color: var(--text);
+    }
+    label .req { color: var(--error); margin-left: 2px; }
+    label .hint {
+      font-weight: 400;
+      color: var(--muted);
+      font-size: .78rem;
+      margin-left: 4px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    select,
+    textarea {
+      width: 100%;
+      padding: .6rem .85rem;
+      border: 1.5px solid var(--border);
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: .9rem;
+      color: var(--text);
+      background: var(--surface);
+      transition: border-color .15s, box-shadow .15s;
+      outline: none;
+    }
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--brand);
+      box-shadow: 0 0 0 3px rgba(37,99,235,.15);
+    }
+
+    select { cursor: pointer; }
+    textarea { resize: vertical; min-height: 90px; }
+
+    /* ── File input ── */
+    .file-wrapper {
+      position: relative;
+      border: 1.5px dashed var(--border);
+      border-radius: 6px;
+      padding: 1.1rem;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color .15s, background .15s;
+    }
+    .file-wrapper:hover,
+    .file-wrapper.over {
+      border-color: var(--brand);
+      background: #eff6ff;
+    }
+    .file-wrapper input[type="file"] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+      width: 100%;
+      height: 100%;
+    }
+    .file-icon { font-size: 1.6rem; margin-bottom: .3rem; }
+    .file-label-text { font-size: .85rem; color: var(--muted); }
+    .file-label-text strong { color: var(--brand); }
+    #file-name {
+      margin-top: .5rem;
+      font-size: .82rem;
+      font-weight: 500;
+      color: var(--brand);
+      word-break: break-all;
+    }
+
+    /* ── Error messages ── */
+    .field-error {
+      display: none;
+      font-size: .78rem;
+      color: var(--error);
+      margin-top: .3rem;
+    }
+    .field.invalid input,
+    .field.invalid select,
+    .field.invalid textarea,
+    .field.invalid .file-wrapper {
+      border-color: var(--error);
+    }
+    .field.invalid .field-error { display: block; }
+
+    /* ── Submit button ── */
+    .btn-submit {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      width: 100%;
+      padding: .85rem;
+      background: var(--brand);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .15s, transform .1s;
+      margin-top: .5rem;
+    }
+    .btn-submit:hover:not(:disabled) { background: var(--brand-dark); }
+    .btn-submit:active:not(:disabled) { transform: scale(.98); }
+    .btn-submit:disabled { opacity: .6; cursor: not-allowed; }
+
+    /* Spinner */
+    .spinner {
+      display: none;
+      width: 18px; height: 18px;
+      border: 2.5px solid rgba(255,255,255,.4);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+    }
+    .btn-submit.loading .spinner { display: block; }
+    .btn-submit.loading .btn-text { opacity: .8; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Feedback banner ── */
+    #feedback {
+      display: none;
+      padding: 1rem 1.25rem;
+      border-radius: 6px;
+      font-size: .9rem;
+      font-weight: 500;
+      margin-top: 1.25rem;
+      line-height: 1.5;
+    }
+    #feedback.success {
+      display: block;
+      background: #f0fdf4;
+      border: 1.5px solid #86efac;
+      color: var(--success);
+    }
+    #feedback.error {
+      display: block;
+      background: #fef2f2;
+      border: 1.5px solid #fca5a5;
+      color: var(--error);
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <div class="card-header">
+    <h1>Justificación de Inasistencia</h1>
+    <p>Completa el formulario para registrar tu justificación. Los campos marcados con * son obligatorios.</p>
+  </div>
+
+  <div class="card-body">
+    <form id="justForm" novalidate>
+
+      <!-- Nombre completo -->
+      <div class="field" id="field-nombre">
+        <label for="nombre">Nombre completo <span class="req">*</span></label>
+        <input type="text" id="nombre" name="nombre" placeholder="Ej. María García López" autocomplete="name" />
+        <span class="field-error">Por favor ingresa tu nombre completo.</span>
+      </div>
+
+      <!-- ID de estudiante -->
+      <div class="field" id="field-id_estudiante">
+        <label for="id_estudiante">ID de estudiante <span class="req">*</span></label>
+        <input type="text" id="id_estudiante" name="id_estudiante" placeholder="Ej. 2024001234" autocomplete="off" />
+        <span class="field-error">Por favor ingresa tu ID de estudiante.</span>
+      </div>
+
+      <!-- Correo electrónico -->
+      <div class="field" id="field-correo">
+        <label for="correo">Correo electrónico <span class="req">*</span></label>
+        <input type="email" id="correo" name="correo" placeholder="alumno@escuela.edu" autocomplete="email" />
+        <span class="field-error">Por favor ingresa un correo electrónico válido.</span>
+      </div>
+
+      <!-- ID de Telegram -->
+      <div class="field" id="field-telegram_id">
+        <label for="telegram_id">
+          ID de Telegram <span class="req">*</span>
+          <span class="hint">(número de 9-10 dígitos, no el @usuario)</span>
+        </label>
+        <input type="text" id="telegram_id" name="telegram_id" placeholder="Ej. 123456789" autocomplete="off" inputmode="numeric" />
+        <span class="field-error">Por favor ingresa tu ID numérico de Telegram.</span>
+      </div>
+
+      <!-- Motivo -->
+      <div class="field" id="field-motivo">
+        <label for="motivo">Motivo de inasistencia <span class="req">*</span></label>
+        <select id="motivo" name="motivo">
+          <option value="">— Selecciona un motivo —</option>
+          <option value="enfermedad">Enfermedad / Cita médica</option>
+          <option value="familiar">Emergencia familiar</option>
+          <option value="tramite">Trámite oficial</option>
+          <option value="trabajo">Compromisos laborales</option>
+          <option value="transporte">Problemas de transporte</option>
+          <option value="otro">Otro</option>
+        </select>
+        <span class="field-error">Por favor selecciona un motivo.</span>
+      </div>
+
+      <!-- Descripción -->
+      <div class="field" id="field-descripcion">
+        <label for="descripcion">Descripción <span class="hint">(opcional)</span></label>
+        <textarea id="descripcion" name="descripcion" placeholder="Información adicional sobre tu inasistencia…"></textarea>
+      </div>
+
+      <!-- Archivo adjunto -->
+      <div class="field" id="field-archivo">
+        <label>
+          Comprobante / Documento adjunto
+          <span class="hint">(JPG, PNG o PDF · máx. 5 MB)</span>
+        </label>
+        <div class="file-wrapper" id="dropZone">
+          <input type="file" id="archivo" name="archivo" accept=".jpg,.jpeg,.png,.pdf" />
+          <div class="file-icon">📎</div>
+          <div class="file-label-text"><strong>Haz clic para seleccionar</strong> o arrastra el archivo aquí</div>
+          <div id="file-name"></div>
+        </div>
+        <span class="field-error">El archivo supera 5 MB o el formato no es válido (JPG, PNG, PDF).</span>
+      </div>
+
+      <!-- Botón -->
+      <button type="submit" class="btn-submit" id="btnSubmit">
+        <span class="spinner"></span>
+        <span class="btn-text">Enviar justificación</span>
+      </button>
+
+      <!-- Feedback -->
+      <div id="feedback"></div>
+
+    </form>
+  </div>
+</div>
+
+<script>
+  // ── CONFIGURACIÓN ────────────────────────────────────────────────────────────
+  const WEBHOOK_URL = "https://TU_INSTANCIA_N8N/webhook/justificacion";
+  // ─────────────────────────────────────────────────────────────────────────────
+
+  const MAX_FILE_BYTES = 5 * 1024 * 1024; // 5 MB
+  const ALLOWED_TYPES  = ["image/jpeg", "image/png", "application/pdf"];
+
+  // ── Elementos ─────────────────────────────────────────────────────────────
+  const form      = document.getElementById("justForm");
+  const btn       = document.getElementById("btnSubmit");
+  const feedback  = document.getElementById("feedback");
+  const fileInput = document.getElementById("archivo");
+  const fileNameEl= document.getElementById("file-name");
+  const dropZone  = document.getElementById("dropZone");
+
+  // ── Drag & drop visual ─────────────────────────────────────────────────────
+  ["dragenter", "dragover"].forEach(evt =>
+    dropZone.addEventListener(evt, e => { e.preventDefault(); dropZone.classList.add("over"); })
+  );
+  ["dragleave", "drop"].forEach(evt =>
+    dropZone.addEventListener(evt, e => { e.preventDefault(); dropZone.classList.remove("over"); })
+  );
+
+  // ── Mostrar nombre del archivo al seleccionar ──────────────────────────────
+  fileInput.addEventListener("change", () => {
+    const file = fileInput.files[0];
+    fileNameEl.textContent = file ? `✓ ${file.name}` : "";
+    // limpiar error previo del campo archivo al cambiar el archivo
+    document.getElementById("field-archivo").classList.remove("invalid");
+  });
+
+  // ── Validación ────────────────────────────────────────────────────────────
+  function validateForm() {
+    let valid = true;
+
+    // Helpers
+    const setValid   = id => document.getElementById(`field-${id}`).classList.remove("invalid");
+    const setInvalid = id => { document.getElementById(`field-${id}`).classList.add("invalid"); valid = false; };
+
+    // nombre
+    document.getElementById("nombre").value.trim()
+      ? setValid("nombre") : setInvalid("nombre");
+
+    // id_estudiante
+    document.getElementById("id_estudiante").value.trim()
+      ? setValid("id_estudiante") : setInvalid("id_estudiante");
+
+    // correo — validación básica de formato
+    const correo = document.getElementById("correo").value.trim();
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo)
+      ? setValid("correo") : setInvalid("correo");
+
+    // telegram_id — solo dígitos, 5-15 caracteres
+    const tgId = document.getElementById("telegram_id").value.trim();
+    /^\d{5,15}$/.test(tgId)
+      ? setValid("telegram_id") : setInvalid("telegram_id");
+
+    // motivo
+    document.getElementById("motivo").value
+      ? setValid("motivo") : setInvalid("motivo");
+
+    // archivo — opcional, pero si se adjuntó debe ser válido
+    const file = fileInput.files[0];
+    if (file) {
+      (ALLOWED_TYPES.includes(file.type) && file.size <= MAX_FILE_BYTES)
+        ? setValid("archivo") : setInvalid("archivo");
+    }
+
+    return valid;
+  }
+
+  // ── Envío ─────────────────────────────────────────────────────────────────
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    // Ocultar feedback previo
+    feedback.className = "";
+    feedback.style.display = "none";
+    feedback.textContent = "";
+
+    if (!validateForm()) return;
+
+    // Estado de carga
+    btn.disabled = true;
+    btn.classList.add("loading");
+    btn.querySelector(".btn-text").textContent = "Enviando…";
+
+    const data = new FormData();
+    data.append("nombre",        document.getElementById("nombre").value.trim());
+    data.append("id_estudiante", document.getElementById("id_estudiante").value.trim());
+    data.append("correo",        document.getElementById("correo").value.trim());
+    data.append("telegram_id",   document.getElementById("telegram_id").value.trim());
+    data.append("motivo",        document.getElementById("motivo").value);
+    data.append("descripcion",   document.getElementById("descripcion").value.trim());
+
+    const file = fileInput.files[0];
+    if (file) data.append("archivo", file, file.name);
+
+    try {
+      const res = await fetch(WEBHOOK_URL, { method: "POST", body: data });
+
+      if (res.ok) {
+        feedback.className   = "success";
+        feedback.textContent = "✅ Tu justificación fue enviada correctamente. Recibirás una confirmación por Telegram en breve.";
+        form.reset();
+        fileNameEl.textContent = "";
+        // limpiar estados de error visuales
+        form.querySelectorAll(".field.invalid").forEach(f => f.classList.remove("invalid"));
+      } else {
+        const txt = await res.text().catch(() => "");
+        feedback.className   = "error";
+        feedback.textContent = `❌ El servidor respondió con un error (${res.status}). Intenta de nuevo o contacta al administrador.${txt ? " Detalle: " + txt : ""}`;
+      }
+    } catch (err) {
+      feedback.className   = "error";
+      feedback.textContent = "❌ No se pudo conectar con el servidor. Verifica tu conexión a internet e inténtalo de nuevo.";
+    } finally {
+      btn.disabled = false;
+      btn.classList.remove("loading");
+      btn.querySelector(".btn-text").textContent = "Enviar justificación";
+      feedback.style.display = "block";
+      feedback.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+  });
+</script>
+
+</body>
+</html>
