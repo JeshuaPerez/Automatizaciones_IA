@@ -1,0 +1,493 @@
+{
+  "name": "Bot Menu Justificaciones",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": ["message", "callback_query"]
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.1,
+      "position": [0, 0],
+      "id": "aa100001-0001-0001-0001-000000000001",
+      "name": "Telegram Trigger",
+      "webhookId": "bb100001-0001-0001-0001-000000000001",
+      "credentials": {
+        "telegramApi": {
+          "id": "EmObYeTDiyURwSgt",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "loose", "version": 3 },
+          "conditions": [
+            {
+              "id": "cc100001-0001-0001-0001-000000000001",
+              "leftValue": "={{ !!$json.callback_query }}",
+              "rightValue": true,
+              "operator": { "type": "boolean", "operation": "true" }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [224, 0],
+      "id": "dd100001-0001-0001-0001-000000000001",
+      "name": "IF: es callback?"
+    },
+    {
+      "parameters": {
+        "resource": "callback",
+        "operation": "answerQuery",
+        "queryId": "={{ $json.callback_query.id }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [448, -176],
+      "id": "ee100001-0001-0001-0001-000000000001",
+      "name": "Answer Callback Query",
+      "credentials": {
+        "telegramApi": {
+          "id": "EmObYeTDiyURwSgt",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "strict", "version": 3 },
+                "conditions": [
+                  { "id": "sw100001", "leftValue": "={{ $('Telegram Trigger').first().json.callback_query.data }}", "rightValue": "consultar", "operator": { "type": "string", "operation": "equals" } }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "strict", "version": 3 },
+                "conditions": [
+                  { "id": "sw100002", "leftValue": "={{ $('Telegram Trigger').first().json.callback_query.data }}", "rightValue": "nueva", "operator": { "type": "string", "operation": "equals" } }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "strict", "version": 3 },
+                "conditions": [
+                  { "id": "sw100003", "leftValue": "={{ $('Telegram Trigger').first().json.callback_query.data }}", "rightValue": "pendientes", "operator": { "type": "string", "operation": "equals" } }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "strict", "version": 3 },
+                "conditions": [
+                  { "id": "sw100004", "leftValue": "={{ $('Telegram Trigger').first().json.callback_query.data }}", "rightValue": "resumen", "operator": { "type": "string", "operation": "equals" } }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [672, -176],
+      "id": "ff100001-0001-0001-0001-000000000001",
+      "name": "Switch Accion"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').first().json.callback_query.message.chat.id }}",
+        "text": "📋 Para consultar el estado de tu justificación, envía el siguiente comando:\n\n`/consultar ID_DE_SOLICITUD`\n\nEjemplo:\n`/consultar 1748823000000`\n\nEncuentras tu ID en el mensaje de confirmación que recibiste al enviar la solicitud.",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [896, -400],
+      "id": "aa200001-0001-0001-0001-000000000001",
+      "name": "Send: cómo consultar",
+      "credentials": {
+        "telegramApi": {
+          "id": "EmObYeTDiyURwSgt",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').first().json.callback_query.message.chat.id }}",
+        "text": "=📝 Para enviar una nueva justificación de inasistencia, accede al formulario web:\n\nhttp://localhost:5678/form/justificacion\n\n⚠️ Asegúrate de tener a mano:\n• Tu ID de estudiante\n• Tu ID de Telegram (número)\n• El motivo de la inasistencia\n• Documento o comprobante (opcional)",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [896, -256],
+      "id": "bb200001-0001-0001-0001-000000000001",
+      "name": "Send: enlace formulario",
+      "credentials": {
+        "telegramApi": {
+          "id": "EmObYeTDiyURwSgt",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "documentId": {
+          "__rl": true,
+          "value": "1a-Z2Z8kipo_FjDM5DMhyat-U-31I5Ib11OwHh39NzXk",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Solicitudes",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1a-Z2Z8kipo_FjDM5DMhyat-U-31I5Ib11OwHh39NzXk/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [896, -112],
+      "id": "cc200001-0001-0001-0001-000000000001",
+      "name": "Sheets: obtener pendientes",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "avt9Zo1iq2n3lSkE",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const rows = $input.all();\nconst pendientes = rows.filter(r =>\n  r.json.Estado === 'pendiente' || r.json.Estado === 'En_proceso'\n);\n\nif (pendientes.length === 0) {\n  return [{ json: { text: '\\u2705 No hay justificaciones pendientes en este momento.' } }];\n}\n\nlet text = '\\u23F3 *Justificaciones pendientes/en revisi\\u00F3n* (' + pendientes.length + '):\\n\\n';\npendientes.forEach((r, i) => {\n  const fecha = r.json.Fecha ? r.json.Fecha.substring(0, 10) : '-';\n  const estado = r.json.Estado === 'En_proceso' ? '\\uD83D\\uDD0D En revisi\\u00F3n' : '\\u23F3 Pendiente';\n  text += (i + 1) + '. *' + (r.json.Nombre || '-') + '*\\n';\n  text += '   ID: ' + (r.json.ID_solicitud || '-') + '\\n';\n  text += '   Fecha: ' + fecha + '\\n';\n  text += '   Estado: ' + estado + '\\n\\n';\n});\n\nreturn [{ json: { text: text } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1120, -112],
+      "id": "dd200001-0001-0001-0001-000000000001",
+      "name": "Code: formatear pendientes"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').first().json.callback_query.message.chat.id }}",
+        "text": "={{ $json.text }}",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [1344, -112],
+      "id": "ee200001-0001-0001-0001-000000000001",
+      "name": "Send: lista pendientes",
+      "credentials": {
+        "telegramApi": {
+          "id": "EmObYeTDiyURwSgt",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "documentId": {
+          "__rl": true,
+          "value": "1a-Z2Z8kipo_FjDM5DMhyat-U-31I5Ib11OwHh39NzXk",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Solicitudes",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1a-Z2Z8kipo_FjDM5DMhyat-U-31I5Ib11OwHh39NzXk/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [896, 32],
+      "id": "ff200001-0001-0001-0001-000000000001",
+      "name": "Sheets: obtener resumen",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "avt9Zo1iq2n3lSkE",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const rows = $input.all();\nconst total = rows.length;\nconst aprobadas = rows.filter(r => r.json.Estado === 'Aprobado').length;\nconst rechazadas = rows.filter(r => r.json.Estado === 'Rechazado').length;\nconst revision = rows.filter(r => r.json.Estado === 'En_proceso').length;\nconst pendientes = rows.filter(r => r.json.Estado === 'pendiente').length;\n\nconst text =\n  '\\uD83D\\uDCCA *Resumen de justificaciones*\\n\\n' +\n  '\\u2705 Aprobadas: ' + aprobadas + '\\n' +\n  '\\u274C Rechazadas: ' + rechazadas + '\\n' +\n  '\\uD83D\\uDD0D En revisi\\u00F3n: ' + revision + '\\n' +\n  '\\u23F3 Pendientes: ' + pendientes + '\\n\\n' +\n  '\\uD83D\\uDCC1 Total registradas: *' + total + '*';\n\nreturn [{ json: { text: text } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1120, 32],
+      "id": "aa300001-0001-0001-0001-000000000001",
+      "name": "Code: calcular resumen"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').first().json.callback_query.message.chat.id }}",
+        "text": "={{ $json.text }}",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [1344, 32],
+      "id": "bb300001-0001-0001-0001-000000000001",
+      "name": "Send: resumen",
+      "credentials": {
+        "telegramApi": {
+          "id": "EmObYeTDiyURwSgt",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": { "caseSensitive": false, "leftValue": "", "typeValidation": "loose", "version": 3 },
+          "conditions": [
+            {
+              "id": "if200001",
+              "leftValue": "={{ $json.message?.text || '' }}",
+              "rightValue": "/consultar",
+              "operator": { "type": "string", "operation": "startsWith" }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [448, 176],
+      "id": "cc300001-0001-0001-0001-000000000001",
+      "name": "IF: es /consultar?"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "documentId": {
+          "__rl": true,
+          "value": "1a-Z2Z8kipo_FjDM5DMhyat-U-31I5Ib11OwHh39NzXk",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Solicitudes",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1a-Z2Z8kipo_FjDM5DMhyat-U-31I5Ib11OwHh39NzXk/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [672, 176],
+      "id": "dd300001-0001-0001-0001-000000000001",
+      "name": "Sheets: buscar por ID",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "avt9Zo1iq2n3lSkE",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const rows = $input.all();\nconst messageText = $('Telegram Trigger').first().json.message?.text || '';\nconst match = messageText.match(/\\/consultar\\s+(\\S+)/);\nconst searchId = match ? match[1].trim() : '';\n\nif (!searchId) {\n  return [{ json: { text: '\\u274C Por favor incluye el ID de solicitud.\\nEjemplo: /consultar 1748823000000' } }];\n}\n\nconst row = rows.find(r => String(r.json.ID_solicitud) === searchId);\n\nif (!row) {\n  return [{ json: { text: '\\u274C No se encontr\\u00F3 ninguna solicitud con ID: ' + searchId + '\\n\\nVerifica que el ID sea correcto.' } }];\n}\n\nconst j = row.json;\nconst fecha = j.Fecha ? j.Fecha.substring(0, 10) : '-';\nconst confianza = j.Nivel_confianza ? Math.round(parseFloat(j.Nivel_confianza) * 100) + '%' : '-';\n\nconst estadoEmoji = {\n  'Aprobado': '\\u2705',\n  'Rechazado': '\\u274C',\n  'En_proceso': '\\uD83D\\uDD0D',\n  'pendiente': '\\u23F3'\n};\nconst emoji = estadoEmoji[j.Estado] || '\\uD83D\\uDCCB';\n\nconst text =\n  '\\uD83D\\uDCCB *Solicitud #' + j.ID_solicitud + '*\\n\\n' +\n  '\\uD83D\\uDC64 Estudiante: ' + (j.Nombre || '-') + '\\n' +\n  '\\uD83D\\uDCC5 Fecha: ' + fecha + '\\n' +\n  '\\uD83D\\uDCDD Motivo: ' + (j.Motivo || '-') + '\\n\\n' +\n  '\\uD83E\\uDD16 Resultado IA: ' + (j.Resultado_IA || 'Pendiente') + '\\n' +\n  '\\uD83D\\uDCCA Confianza: ' + confianza + '\\n\\n' +\n  emoji + ' Estado actual: *' + (j.Estado || '-') + '*';\n\nreturn [{ json: { text: text } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [896, 176],
+      "id": "ee300001-0001-0001-0001-000000000001",
+      "name": "Code: buscar solicitud"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').first().json.message.chat.id }}",
+        "text": "={{ $json.text }}",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [1120, 176],
+      "id": "ff300001-0001-0001-0001-000000000001",
+      "name": "Send: resultado consulta",
+      "credentials": {
+        "telegramApi": {
+          "id": "EmObYeTDiyURwSgt",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.message?.chat?.id || $json.callback_query?.message?.chat?.id }}",
+        "text": "=👋 ¡Hola! Soy el asistente del Campus Josh para gestión de justificaciones de inasistencia.\n\n¿Qué deseas hacer?",
+        "additionalFields": {
+          "replyMarkup": "inlineKeyboard",
+          "inlineKeyboard": {
+            "rows": [
+              {
+                "row": {
+                  "buttons": [
+                    { "text": "📋 Consultar justificación", "callbackData": "consultar" },
+                    { "text": "📝 Nueva justificación", "callbackData": "nueva" }
+                  ]
+                }
+              },
+              {
+                "row": {
+                  "buttons": [
+                    { "text": "⏳ Ver pendientes", "callbackData": "pendientes" },
+                    { "text": "📊 Resumen total", "callbackData": "resumen" }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [672, 352],
+      "id": "aa400001-0001-0001-0001-000000000001",
+      "name": "Send: menú principal",
+      "credentials": {
+        "telegramApi": {
+          "id": "EmObYeTDiyURwSgt",
+          "name": "Telegram account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          { "node": "IF: es callback?", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "IF: es callback?": {
+      "main": [
+        [
+          { "node": "Answer Callback Query", "type": "main", "index": 0 }
+        ],
+        [
+          { "node": "IF: es /consultar?", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Answer Callback Query": {
+      "main": [
+        [
+          { "node": "Switch Accion", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Switch Accion": {
+      "main": [
+        [
+          { "node": "Send: cómo consultar", "type": "main", "index": 0 }
+        ],
+        [
+          { "node": "Send: enlace formulario", "type": "main", "index": 0 }
+        ],
+        [
+          { "node": "Sheets: obtener pendientes", "type": "main", "index": 0 }
+        ],
+        [
+          { "node": "Sheets: obtener resumen", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Sheets: obtener pendientes": {
+      "main": [
+        [
+          { "node": "Code: formatear pendientes", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Code: formatear pendientes": {
+      "main": [
+        [
+          { "node": "Send: lista pendientes", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Sheets: obtener resumen": {
+      "main": [
+        [
+          { "node": "Code: calcular resumen", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Code: calcular resumen": {
+      "main": [
+        [
+          { "node": "Send: resumen", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "IF: es /consultar?": {
+      "main": [
+        [
+          { "node": "Sheets: buscar por ID", "type": "main", "index": 0 }
+        ],
+        [
+          { "node": "Send: menú principal", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Sheets: buscar por ID": {
+      "main": [
+        [
+          { "node": "Code: buscar solicitud", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Code: buscar solicitud": {
+      "main": [
+        [
+          { "node": "Send: resultado consulta", "type": "main", "index": 0 }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": {}
+}
