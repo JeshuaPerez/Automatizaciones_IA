@@ -3,12 +3,19 @@
   "nodes": [
     {
       "parameters": {
-        "updates": ["message", "callback_query"]
+        "updates": [
+          "message",
+          "callback_query"
+        ],
+        "additionalFields": {}
       },
       "type": "n8n-nodes-base.telegramTrigger",
       "typeVersion": 1.1,
-      "position": [0, 0],
-      "id": "aa100001-0001-0001-0001-000000000001",
+      "position": [
+        -896,
+        576
+      ],
+      "id": "5ba40939-f228-4750-8731-cde4f0ac9e90",
       "name": "Telegram Trigger",
       "webhookId": "bb100001-0001-0001-0001-000000000001",
       "credentials": {
@@ -21,13 +28,21 @@
     {
       "parameters": {
         "conditions": {
-          "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "loose", "version": 3 },
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
           "conditions": [
             {
               "id": "cc100001-0001-0001-0001-000000000001",
               "leftValue": "={{ !!$json.callback_query }}",
               "rightValue": true,
-              "operator": { "type": "boolean", "operation": "true" }
+              "operator": {
+                "type": "boolean",
+                "operation": "true"
+              }
             }
           ],
           "combinator": "and"
@@ -37,22 +52,28 @@
       },
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
-      "position": [224, 0],
-      "id": "dd100001-0001-0001-0001-000000000001",
+      "position": [
+        -672,
+        576
+      ],
+      "id": "a0887c9a-71b2-4bc2-8261-3d3fc62d900b",
       "name": "IF: es callback?"
     },
     {
       "parameters": {
         "resource": "callback",
-        "operation": "answerQuery",
         "queryId": "={{ $json.callback_query.id }}",
         "additionalFields": {}
       },
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
-      "position": [448, -176],
-      "id": "ee100001-0001-0001-0001-000000000001",
+      "position": [
+        -448,
+        288
+      ],
+      "id": "93a3a783-a8ad-4b50-a79a-f12c58fcf36b",
       "name": "Answer Callback Query",
+      "webhookId": "44518de4-d3ee-4f61-8749-354f23ebfb73",
       "credentials": {
         "telegramApi": {
           "id": "EmObYeTDiyURwSgt",
@@ -66,36 +87,88 @@
           "values": [
             {
               "conditions": {
-                "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "strict", "version": 3 },
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
                 "conditions": [
-                  { "id": "sw100001", "leftValue": "={{ $('Telegram Trigger').first().json.callback_query.data }}", "rightValue": "consultar", "operator": { "type": "string", "operation": "equals" } }
+                  {
+                    "id": "sw100001",
+                    "leftValue": "={{ $('Telegram Trigger').first().json.callback_query.data }}",
+                    "rightValue": "consultar",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
                 ],
                 "combinator": "and"
               }
             },
             {
               "conditions": {
-                "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "strict", "version": 3 },
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
                 "conditions": [
-                  { "id": "sw100002", "leftValue": "={{ $('Telegram Trigger').first().json.callback_query.data }}", "rightValue": "nueva", "operator": { "type": "string", "operation": "equals" } }
+                  {
+                    "id": "sw100002",
+                    "leftValue": "={{ $('Telegram Trigger').first().json.callback_query.data }}",
+                    "rightValue": "nueva",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
                 ],
                 "combinator": "and"
               }
             },
             {
               "conditions": {
-                "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "strict", "version": 3 },
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
                 "conditions": [
-                  { "id": "sw100003", "leftValue": "={{ $('Telegram Trigger').first().json.callback_query.data }}", "rightValue": "pendientes", "operator": { "type": "string", "operation": "equals" } }
+                  {
+                    "id": "sw100003",
+                    "leftValue": "={{ $('Telegram Trigger').first().json.callback_query.data }}",
+                    "rightValue": "pendientes",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
                 ],
                 "combinator": "and"
               }
             },
             {
               "conditions": {
-                "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "strict", "version": 3 },
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
                 "conditions": [
-                  { "id": "sw100004", "leftValue": "={{ $('Telegram Trigger').first().json.callback_query.data }}", "rightValue": "resumen", "operator": { "type": "string", "operation": "equals" } }
+                  {
+                    "id": "sw100004",
+                    "leftValue": "={{ $('Telegram Trigger').first().json.callback_query.data }}",
+                    "rightValue": "resumen",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
                 ],
                 "combinator": "and"
               }
@@ -106,8 +179,11 @@
       },
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.4,
-      "position": [672, -176],
-      "id": "ff100001-0001-0001-0001-000000000001",
+      "position": [
+        -224,
+        256
+      ],
+      "id": "bcf087f2-ed75-45a2-8102-522a9de02c7b",
       "name": "Switch Accion"
     },
     {
@@ -120,9 +196,13 @@
       },
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
-      "position": [896, -400],
-      "id": "aa200001-0001-0001-0001-000000000001",
+      "position": [
+        0,
+        0
+      ],
+      "id": "30f0d623-c1e3-46d6-9b3d-d495575147a9",
       "name": "Send: cómo consultar",
+      "webhookId": "be13b7c0-a707-47a8-826f-9e417ab5f822",
       "credentials": {
         "telegramApi": {
           "id": "EmObYeTDiyURwSgt",
@@ -138,9 +218,13 @@
       },
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
-      "position": [896, -256],
-      "id": "bb200001-0001-0001-0001-000000000001",
+      "position": [
+        0,
+        192
+      ],
+      "id": "2e665b47-17e1-4fdf-8e09-5d06f700e2c0",
       "name": "Send: enlace formulario",
+      "webhookId": "af2c7eee-b85c-4029-bf36-18c7f5d08064",
       "credentials": {
         "telegramApi": {
           "id": "EmObYeTDiyURwSgt",
@@ -150,11 +234,12 @@
     },
     {
       "parameters": {
-        "operation": "getAll",
         "documentId": {
           "__rl": true,
           "value": "1a-Z2Z8kipo_FjDM5DMhyat-U-31I5Ib11OwHh39NzXk",
-          "mode": "id"
+          "mode": "list",
+          "cachedResultName": "Justificaciones",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1a-Z2Z8kipo_FjDM5DMhyat-U-31I5Ib11OwHh39NzXk/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
@@ -167,8 +252,11 @@
       },
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
-      "position": [896, -112],
-      "id": "cc200001-0001-0001-0001-000000000001",
+      "position": [
+        0,
+        384
+      ],
+      "id": "b156b5a7-00b7-4ef2-bb8f-3af6059d6fd1",
       "name": "Sheets: obtener pendientes",
       "credentials": {
         "googleSheetsOAuth2Api": {
@@ -183,8 +271,11 @@
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [1120, -112],
-      "id": "dd200001-0001-0001-0001-000000000001",
+      "position": [
+        224,
+        384
+      ],
+      "id": "fe7d4a19-38a9-4229-9101-b864a76eef20",
       "name": "Code: formatear pendientes"
     },
     {
@@ -197,9 +288,13 @@
       },
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
-      "position": [1344, -112],
-      "id": "ee200001-0001-0001-0001-000000000001",
+      "position": [
+        448,
+        384
+      ],
+      "id": "130aaed4-4960-4ff2-b6a4-1799f50f5d11",
       "name": "Send: lista pendientes",
+      "webhookId": "47704139-c990-4caf-aac1-cc52df408b05",
       "credentials": {
         "telegramApi": {
           "id": "EmObYeTDiyURwSgt",
@@ -209,11 +304,12 @@
     },
     {
       "parameters": {
-        "operation": "getAll",
         "documentId": {
           "__rl": true,
           "value": "1a-Z2Z8kipo_FjDM5DMhyat-U-31I5Ib11OwHh39NzXk",
-          "mode": "id"
+          "mode": "list",
+          "cachedResultName": "Justificaciones",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1a-Z2Z8kipo_FjDM5DMhyat-U-31I5Ib11OwHh39NzXk/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
@@ -226,8 +322,11 @@
       },
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
-      "position": [896, 32],
-      "id": "ff200001-0001-0001-0001-000000000001",
+      "position": [
+        0,
+        576
+      ],
+      "id": "5c150215-a17c-4ac9-a100-781578932b4c",
       "name": "Sheets: obtener resumen",
       "credentials": {
         "googleSheetsOAuth2Api": {
@@ -242,8 +341,11 @@
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [1120, 32],
-      "id": "aa300001-0001-0001-0001-000000000001",
+      "position": [
+        224,
+        576
+      ],
+      "id": "539a5e16-3b96-4a01-9a43-f7a6ba1f6388",
       "name": "Code: calcular resumen"
     },
     {
@@ -256,9 +358,13 @@
       },
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
-      "position": [1344, 32],
-      "id": "bb300001-0001-0001-0001-000000000001",
+      "position": [
+        448,
+        576
+      ],
+      "id": "ad461766-7815-4a82-b093-bbe68ab07fb3",
       "name": "Send: resumen",
+      "webhookId": "4dc9c579-1ea7-4ebb-bba0-917ca8b044a2",
       "credentials": {
         "telegramApi": {
           "id": "EmObYeTDiyURwSgt",
@@ -269,13 +375,21 @@
     {
       "parameters": {
         "conditions": {
-          "options": { "caseSensitive": false, "leftValue": "", "typeValidation": "loose", "version": 3 },
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
           "conditions": [
             {
               "id": "if200001",
               "leftValue": "={{ $json.message?.text || '' }}",
               "rightValue": "/consultar",
-              "operator": { "type": "string", "operation": "startsWith" }
+              "operator": {
+                "type": "string",
+                "operation": "startsWith"
+              }
             }
           ],
           "combinator": "and"
@@ -285,17 +399,21 @@
       },
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
-      "position": [448, 176],
-      "id": "cc300001-0001-0001-0001-000000000001",
+      "position": [
+        -448,
+        864
+      ],
+      "id": "d053b336-3917-4291-bf10-717dd351a644",
       "name": "IF: es /consultar?"
     },
     {
       "parameters": {
-        "operation": "getAll",
         "documentId": {
           "__rl": true,
           "value": "1a-Z2Z8kipo_FjDM5DMhyat-U-31I5Ib11OwHh39NzXk",
-          "mode": "id"
+          "mode": "list",
+          "cachedResultName": "Justificaciones",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1a-Z2Z8kipo_FjDM5DMhyat-U-31I5Ib11OwHh39NzXk/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
@@ -308,8 +426,11 @@
       },
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
-      "position": [672, 176],
-      "id": "dd300001-0001-0001-0001-000000000001",
+      "position": [
+        -224,
+        768
+      ],
+      "id": "13c44edf-b753-4b30-a8ab-65e6f737971b",
       "name": "Sheets: buscar por ID",
       "credentials": {
         "googleSheetsOAuth2Api": {
@@ -324,8 +445,11 @@
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [896, 176],
-      "id": "ee300001-0001-0001-0001-000000000001",
+      "position": [
+        0,
+        768
+      ],
+      "id": "60f8b66f-01d5-4f77-92d9-eddec6c74a83",
       "name": "Code: buscar solicitud"
     },
     {
@@ -338,9 +462,13 @@
       },
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
-      "position": [1120, 176],
-      "id": "ff300001-0001-0001-0001-000000000001",
+      "position": [
+        224,
+        768
+      ],
+      "id": "c02b5ecb-5771-4854-9618-7f2840fa15e9",
       "name": "Send: resultado consulta",
+      "webhookId": "858a13fe-f19b-4815-9b97-fc9d92a9ef87",
       "credentials": {
         "telegramApi": {
           "id": "EmObYeTDiyURwSgt",
@@ -352,35 +480,58 @@
       "parameters": {
         "chatId": "={{ $json.message?.chat?.id || $json.callback_query?.message?.chat?.id }}",
         "text": "=👋 ¡Hola! Soy el asistente del Campus Josh para gestión de justificaciones de inasistencia.\n\n¿Qué deseas hacer?",
-        "additionalFields": {
-          "replyMarkup": "inlineKeyboard",
-          "inlineKeyboard": {
-            "rows": [
-              {
-                "row": {
-                  "buttons": [
-                    { "text": "📋 Consultar justificación", "callbackData": "consultar" },
-                    { "text": "📝 Nueva justificación", "callbackData": "nueva" }
-                  ]
-                }
-              },
-              {
-                "row": {
-                  "buttons": [
-                    { "text": "⏳ Ver pendientes", "callbackData": "pendientes" },
-                    { "text": "📊 Resumen total", "callbackData": "resumen" }
-                  ]
-                }
+        "replyMarkup": "inlineKeyboard",
+        "inlineKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "📋 Consultar justificación",
+                    "additionalFields": {
+                      "callback_data": "consultar"
+                    }
+                  },
+                  {
+                    "text": "📝 Nueva justificación",
+                    "additionalFields": {
+                      "callback_data": "nueva"
+                    }
+                  }
+                ]
               }
-            ]
-          }
-        }
+            },
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "⏳ Ver pendientes",
+                    "additionalFields": {
+                      "callback_data": "pendientes"
+                    }
+                  },
+                  {
+                    "text": "📊 Resumen total",
+                    "additionalFields": {
+                      "callback_data": "resumen"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "additionalFields": {}
       },
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
-      "position": [672, 352],
-      "id": "aa400001-0001-0001-0001-000000000001",
+      "position": [
+        -224,
+        960
+      ],
+      "id": "db2a5dca-3b74-4d19-8cab-ce10a9de4b01",
       "name": "Send: menú principal",
+      "webhookId": "9be0ff80-3416-4d81-9e09-0b60be04a6bb",
       "credentials": {
         "telegramApi": {
           "id": "EmObYeTDiyURwSgt",
@@ -389,105 +540,174 @@
       }
     }
   ],
+  "pinData": {},
   "connections": {
     "Telegram Trigger": {
       "main": [
         [
-          { "node": "IF: es callback?", "type": "main", "index": 0 }
+          {
+            "node": "IF: es callback?",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     },
     "IF: es callback?": {
       "main": [
         [
-          { "node": "Answer Callback Query", "type": "main", "index": 0 }
+          {
+            "node": "Answer Callback Query",
+            "type": "main",
+            "index": 0
+          }
         ],
         [
-          { "node": "IF: es /consultar?", "type": "main", "index": 0 }
+          {
+            "node": "IF: es /consultar?",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     },
     "Answer Callback Query": {
       "main": [
         [
-          { "node": "Switch Accion", "type": "main", "index": 0 }
+          {
+            "node": "Switch Accion",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     },
     "Switch Accion": {
       "main": [
         [
-          { "node": "Send: cómo consultar", "type": "main", "index": 0 }
+          {
+            "node": "Send: cómo consultar",
+            "type": "main",
+            "index": 0
+          }
         ],
         [
-          { "node": "Send: enlace formulario", "type": "main", "index": 0 }
+          {
+            "node": "Send: enlace formulario",
+            "type": "main",
+            "index": 0
+          }
         ],
         [
-          { "node": "Sheets: obtener pendientes", "type": "main", "index": 0 }
+          {
+            "node": "Sheets: obtener pendientes",
+            "type": "main",
+            "index": 0
+          }
         ],
         [
-          { "node": "Sheets: obtener resumen", "type": "main", "index": 0 }
+          {
+            "node": "Sheets: obtener resumen",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     },
     "Sheets: obtener pendientes": {
       "main": [
         [
-          { "node": "Code: formatear pendientes", "type": "main", "index": 0 }
+          {
+            "node": "Code: formatear pendientes",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     },
     "Code: formatear pendientes": {
       "main": [
         [
-          { "node": "Send: lista pendientes", "type": "main", "index": 0 }
+          {
+            "node": "Send: lista pendientes",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     },
     "Sheets: obtener resumen": {
       "main": [
         [
-          { "node": "Code: calcular resumen", "type": "main", "index": 0 }
+          {
+            "node": "Code: calcular resumen",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     },
     "Code: calcular resumen": {
       "main": [
         [
-          { "node": "Send: resumen", "type": "main", "index": 0 }
+          {
+            "node": "Send: resumen",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     },
     "IF: es /consultar?": {
       "main": [
         [
-          { "node": "Sheets: buscar por ID", "type": "main", "index": 0 }
+          {
+            "node": "Sheets: buscar por ID",
+            "type": "main",
+            "index": 0
+          }
         ],
         [
-          { "node": "Send: menú principal", "type": "main", "index": 0 }
+          {
+            "node": "Send: menú principal",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     },
     "Sheets: buscar por ID": {
       "main": [
         [
-          { "node": "Code: buscar solicitud", "type": "main", "index": 0 }
+          {
+            "node": "Code: buscar solicitud",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     },
     "Code: buscar solicitud": {
       "main": [
         [
-          { "node": "Send: resultado consulta", "type": "main", "index": 0 }
+          {
+            "node": "Send: resultado consulta",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     }
   },
-  "active": false,
+  "active": true,
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "binaryMode": "separate"
   },
-  "staticData": null,
-  "meta": null,
-  "pinData": {}
+  "versionId": "8b2d68fc-4420-4c78-9985-fc59d7a58cf2",
+  "meta": {
+    "instanceId": "de0ec55dd69c440bf87d74cdb94130ccebcbc55c2587e7f91dd1053238a58747"
+  },
+  "id": "Y2AkAzOBdhWZykEV",
+  "tags": []
 }

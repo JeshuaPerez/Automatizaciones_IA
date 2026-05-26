@@ -10,8 +10,11 @@
       },
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
-      "position": [0, 96],
-      "id": "515d58ed-7bbc-4307-b89a-6803da0c2bcc",
+      "position": [
+        -1792,
+        384
+      ],
+      "id": "918640cf-e939-4a23-8c50-0daa0827f219",
       "name": "Webhook",
       "webhookId": "b523048f-e5a0-499e-aa17-918be3d7b1fb"
     },
@@ -25,8 +28,11 @@
       },
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.1,
-      "position": [224, 320],
-      "id": "aa000001-0001-0001-0001-000000000001",
+      "position": [
+        -1568,
+        480
+      ],
+      "id": "51d6874e-12b3-4406-8339-f24f184ab2de",
       "name": "Respond to Webhook"
     },
     {
@@ -59,17 +65,105 @@
           },
           "matchingColumns": [],
           "schema": [
-            { "id": "ID_solicitud", "displayName": "ID_solicitud", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true },
-            { "id": "Nombre", "displayName": "Nombre", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true },
-            { "id": "ID_estudiante", "displayName": "ID_estudiante", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true },
-            { "id": "Correo", "displayName": "Correo", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true },
-            { "id": "Telegram_ID", "displayName": "Telegram_ID", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true },
-            { "id": "Motivo", "displayName": "Motivo", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true },
-            { "id": "Descripcion", "displayName": "Descripcion", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true },
-            { "id": "Resultado_IA", "displayName": "Resultado_IA", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true },
-            { "id": "Nivel_confianza", "displayName": "Nivel_confianza", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true },
-            { "id": "Estado", "displayName": "Estado", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true },
-            { "id": "Fecha", "displayName": "Fecha", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true }
+            {
+              "id": "ID_solicitud",
+              "displayName": "ID_solicitud",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Nombre",
+              "displayName": "Nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ID_estudiante",
+              "displayName": "ID_estudiante",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Correo",
+              "displayName": "Correo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Telegram_ID",
+              "displayName": "Telegram_ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Motivo",
+              "displayName": "Motivo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Descripcion",
+              "displayName": "Descripcion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Resultado_IA",
+              "displayName": "Resultado_IA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Nivel_confianza",
+              "displayName": "Nivel_confianza",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Estado",
+              "displayName": "Estado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Fecha",
+              "displayName": "Fecha",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
           ],
           "attemptToConvertTypes": false,
           "convertFieldsToString": false
@@ -78,8 +172,11 @@
       },
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
-      "position": [224, 96],
-      "id": "8998025e-4770-4fd0-a20c-bcc2853ecce6",
+      "position": [
+        -1568,
+        288
+      ],
+      "id": "fb2187a3-2e82-4f53-89cb-41a7f86ea1e0",
       "name": "Append row in sheet",
       "credentials": {
         "googleSheetsOAuth2Api": {
@@ -94,8 +191,11 @@
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [448, 96],
-      "id": "ca129c8a-ae13-4aa8-b3b7-3a8844d983b9",
+      "position": [
+        -1344,
+        288
+      ],
+      "id": "c58b0c02-5663-40c9-a6fc-e9ae51b32328",
       "name": "Code in JavaScript"
     },
     {
@@ -105,7 +205,10 @@
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
-            { "name": "Content-Type", "value": "application/json" }
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
           ]
         },
         "sendBody": true,
@@ -116,8 +219,11 @@
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.4,
-      "position": [672, 96],
-      "id": "5755c874-ffb6-4942-a160-52e2ff3248a6",
+      "position": [
+        -1120,
+        288
+      ],
+      "id": "3ead2151-9f88-4742-8ba3-39a975a44bcd",
       "name": "HTTP Request"
     },
     {
@@ -126,8 +232,11 @@
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [896, 96],
-      "id": "4fd1dd0a-76c8-4c00-bf86-f187f6f6e8fb",
+      "position": [
+        -896,
+        288
+      ],
+      "id": "86b55ffe-a75b-4e18-8b15-80d85492a576",
       "name": "Code in JavaScript1"
     },
     {
@@ -144,7 +253,10 @@
               "id": "6196771a-db12-4a07-96b3-4363f6a5af57",
               "leftValue": "={{ $json.confianza }}",
               "rightValue": 0.8,
-              "operator": { "type": "number", "operation": "gt" }
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
             }
           ],
           "combinator": "and"
@@ -154,8 +266,11 @@
       },
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
-      "position": [1120, 96],
-      "id": "2cca7263-aea6-4d0a-82ad-d046623e2f4e",
+      "position": [
+        -672,
+        288
+      ],
+      "id": "0d0af34f-6233-42bd-8522-158c64bf39a8",
       "name": "If"
     },
     {
@@ -164,27 +279,66 @@
           "values": [
             {
               "conditions": {
-                "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "strict", "version": 3 },
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
                 "conditions": [
-                  { "leftValue": "={{ $json.clasificacion }}", "rightValue": "VALIDA", "operator": { "type": "string", "operation": "equals" }, "id": "4054e6e1-8024-4efc-8738-4d5333995561" }
+                  {
+                    "leftValue": "={{ $json.clasificacion }}",
+                    "rightValue": "VALIDA",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "4054e6e1-8024-4efc-8738-4d5333995561"
+                  }
                 ],
                 "combinator": "and"
               }
             },
             {
               "conditions": {
-                "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "strict", "version": 3 },
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
                 "conditions": [
-                  { "id": "e16d6a3a-4695-49cb-a78d-b9ab69413e11", "leftValue": "={{ $json.clasificacion }}", "rightValue": "INVALIDA", "operator": { "type": "string", "operation": "equals" } }
+                  {
+                    "id": "e16d6a3a-4695-49cb-a78d-b9ab69413e11",
+                    "leftValue": "={{ $json.clasificacion }}",
+                    "rightValue": "INVALIDA",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
                 ],
                 "combinator": "and"
               }
             },
             {
               "conditions": {
-                "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "strict", "version": 3 },
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
                 "conditions": [
-                  { "id": "02f892aa-1f56-41ec-b416-467670da1fac", "leftValue": "={{ $json.clasificacion }}", "rightValue": "DUDOSA", "operator": { "type": "string", "operation": "equals" } }
+                  {
+                    "id": "02f892aa-1f56-41ec-b416-467670da1fac",
+                    "leftValue": "={{ $json.clasificacion }}",
+                    "rightValue": "DUDOSA",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
                 ],
                 "combinator": "and"
               }
@@ -195,15 +349,23 @@
       },
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.4,
-      "position": [1344, 176],
-      "id": "ef131c88-2223-4d5c-8586-df6995bfbca5",
+      "position": [
+        -448,
+        144
+      ],
+      "id": "7286f332-5096-4c69-ae2d-f7744a33c76c",
       "name": "Switch"
     },
     {
       "parameters": {
         "assignments": {
           "assignments": [
-            { "id": "d9501d91-7d80-4bf6-b9ad-aa49838262ea", "name": "Estado", "value": "Aprobado", "type": "string" }
+            {
+              "id": "d9501d91-7d80-4bf6-b9ad-aa49838262ea",
+              "name": "Estado",
+              "value": "Aprobado",
+              "type": "string"
+            }
           ]
         },
         "includeOtherFields": true,
@@ -211,15 +373,23 @@
       },
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
-      "position": [1568, 0],
-      "id": "f752a011-b3c8-4385-8b00-f0922ba35d2c",
+      "position": [
+        -224,
+        0
+      ],
+      "id": "0cea970c-a565-4a3a-8feb-27d2f745e2e6",
       "name": "VALIDA"
     },
     {
       "parameters": {
         "assignments": {
           "assignments": [
-            { "id": "a293d9b5-940c-4323-b18a-c2f11ef837d6", "name": "Estado", "value": "Rechazado", "type": "string" }
+            {
+              "id": "a293d9b5-940c-4323-b18a-c2f11ef837d6",
+              "name": "Estado",
+              "value": "Rechazado",
+              "type": "string"
+            }
           ]
         },
         "includeOtherFields": true,
@@ -227,15 +397,23 @@
       },
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
-      "position": [1568, 192],
-      "id": "f598efdf-ca9d-4fd3-bb9f-11963105fcb4",
+      "position": [
+        -224,
+        192
+      ],
+      "id": "4889cc53-b6ff-4a8f-855f-d2ed868bd3dd",
       "name": "INVALIDA"
     },
     {
       "parameters": {
         "assignments": {
           "assignments": [
-            { "id": "f24de910-b716-48a2-b18a-73c2870669b2", "name": "Estado", "value": "En_proceso", "type": "string" }
+            {
+              "id": "f24de910-b716-48a2-b18a-73c2870669b2",
+              "name": "Estado",
+              "value": "En_proceso",
+              "type": "string"
+            }
           ]
         },
         "includeOtherFields": true,
@@ -243,8 +421,11 @@
       },
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
-      "position": [1568, 384],
-      "id": "4d1d3385-fe85-4b93-a46a-1ee9ee01f27c",
+      "position": [
+        -224,
+        384
+      ],
+      "id": "a94f7fe1-d601-4552-acca-6c7c70ce1257",
       "name": "DUDOSA"
     },
     {
@@ -272,19 +453,111 @@
             "Nivel_confianza": "={{ $json.confianza }}",
             "Estado": "={{ $json.Estado }}"
           },
-          "matchingColumns": ["ID_solicitud"],
+          "matchingColumns": [
+            "ID_solicitud"
+          ],
           "schema": [
-            { "id": "ID_solicitud", "displayName": "ID_solicitud", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true, "removed": false },
-            { "id": "Nombre", "displayName": "Nombre", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true },
-            { "id": "ID_estudiante", "displayName": "ID_estudiante", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true },
-            { "id": "Correo", "displayName": "Correo", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true },
-            { "id": "Telegram_ID", "displayName": "Telegram_ID", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true, "removed": false },
-            { "id": "Motivo", "displayName": "Motivo", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true },
-            { "id": "Descripcion", "displayName": "Descripcion", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true },
-            { "id": "Resultado_IA", "displayName": "Resultado_IA", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true },
-            { "id": "Nivel_confianza", "displayName": "Nivel_confianza", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true },
-            { "id": "Estado", "displayName": "Estado", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true },
-            { "id": "Fecha", "displayName": "Fecha", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true }
+            {
+              "id": "ID_solicitud",
+              "displayName": "ID_solicitud",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Nombre",
+              "displayName": "Nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ID_estudiante",
+              "displayName": "ID_estudiante",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Correo",
+              "displayName": "Correo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Telegram_ID",
+              "displayName": "Telegram_ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Motivo",
+              "displayName": "Motivo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Descripcion",
+              "displayName": "Descripcion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Resultado_IA",
+              "displayName": "Resultado_IA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Nivel_confianza",
+              "displayName": "Nivel_confianza",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Estado",
+              "displayName": "Estado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Fecha",
+              "displayName": "Fecha",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
           ],
           "attemptToConvertTypes": false,
           "convertFieldsToString": false
@@ -293,8 +566,11 @@
       },
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
-      "position": [1792, 192],
-      "id": "99815e7d-909f-49b0-99b3-39e5525b3d05",
+      "position": [
+        0,
+        160
+      ],
+      "id": "27ee6b88-c4c3-4b7b-98e3-098fe46fa7d4",
       "name": "Update row in sheet",
       "credentials": {
         "googleSheetsOAuth2Api": {
@@ -317,7 +593,10 @@
               "id": "bb000001-0001-0001-0001-000000000001",
               "leftValue": "={{ $json.Estado }}",
               "rightValue": "En_proceso",
-              "operator": { "type": "string", "operation": "equals" }
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
             }
           ],
           "combinator": "and"
@@ -327,8 +606,11 @@
       },
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
-      "position": [2016, 192],
-      "id": "cc000001-0001-0001-0001-000000000001",
+      "position": [
+        224,
+        160
+      ],
+      "id": "dec52d2b-3d2c-45ca-8b79-c70bb5eef780",
       "name": "If Dudosa"
     },
     {
@@ -339,9 +621,13 @@
       },
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
-      "position": [2240, 96],
-      "id": "dd000001-0001-0001-0001-000000000001",
+      "position": [
+        448,
+        96
+      ],
+      "id": "6a6308b3-9c4c-479e-81f1-1768baf93108",
       "name": "Send Dudosa Message",
+      "webhookId": "1579a705-36e4-415f-aaa4-86fe9859226e",
       "credentials": {
         "telegramApi": {
           "id": "EmObYeTDiyURwSgt",
@@ -357,9 +643,13 @@
       },
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
-      "position": [2240, 288],
-      "id": "28435c02-f6a5-46a1-a6f1-4cded6109a95",
+      "position": [
+        448,
+        288
+      ],
+      "id": "b1a32b22-29c6-4416-8846-bd4b153c1072",
       "name": "Send a text message",
+      "webhookId": "e9a14591-4c6a-4b0d-9997-6708c989742a",
       "credentials": {
         "telegramApi": {
           "id": "EmObYeTDiyURwSgt",
@@ -371,21 +661,28 @@
       "parameters": {},
       "type": "n8n-nodes-base.errorTrigger",
       "typeVersion": 1,
-      "position": [-224, 480],
-      "id": "ee000001-0001-0001-0001-000000000001",
+      "position": [
+        -1792,
+        704
+      ],
+      "id": "1aaebc03-269c-4df1-b88b-5725144bcc07",
       "name": "Error Trigger"
     },
     {
       "parameters": {
-        "chatId": "={{ $vars.ADMIN_TELEGRAM_ID || '0' }}",
+        "chatId": "8733730591",
         "text": "=❌ Hubo un error procesando una solicitud de justificación.\n\nNodo: {{ $json.error?.node?.name || 'desconocido' }}\nError: {{ $json.error?.message || 'sin detalle' }}\n\nHora: {{ $now.toISO() }}\n\nRevisa n8n para más información.",
         "additionalFields": {}
       },
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
-      "position": [0, 480],
-      "id": "ff000001-0001-0001-0001-000000000001",
+      "position": [
+        -1568,
+        704
+      ],
+      "id": "09fdcdf6-9a5e-421b-a462-e126b42a8517",
       "name": "Send Error Notification",
+      "webhookId": "dad48944-6874-4b61-8053-59783eb9fd2a",
       "credentials": {
         "telegramApi": {
           "id": "EmObYeTDiyURwSgt",
@@ -394,120 +691,194 @@
       }
     }
   ],
+  "pinData": {},
   "connections": {
     "Webhook": {
       "main": [
         [
-          { "node": "Append row in sheet", "type": "main", "index": 0 },
-          { "node": "Respond to Webhook", "type": "main", "index": 0 }
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     },
     "Append row in sheet": {
       "main": [
         [
-          { "node": "Code in JavaScript", "type": "main", "index": 0 }
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     },
     "Code in JavaScript": {
       "main": [
         [
-          { "node": "HTTP Request", "type": "main", "index": 0 }
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     },
     "HTTP Request": {
       "main": [
         [
-          { "node": "Code in JavaScript1", "type": "main", "index": 0 }
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     },
     "Code in JavaScript1": {
       "main": [
         [
-          { "node": "If", "type": "main", "index": 0 }
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     },
     "If": {
       "main": [
         [
-          { "node": "Switch", "type": "main", "index": 0 }
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
         ],
         [
-          { "node": "DUDOSA", "type": "main", "index": 0 }
+          {
+            "node": "DUDOSA",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     },
     "Switch": {
       "main": [
         [
-          { "node": "VALIDA", "type": "main", "index": 0 }
+          {
+            "node": "VALIDA",
+            "type": "main",
+            "index": 0
+          }
         ],
         [
-          { "node": "INVALIDA", "type": "main", "index": 0 }
+          {
+            "node": "INVALIDA",
+            "type": "main",
+            "index": 0
+          }
         ],
         [
-          { "node": "DUDOSA", "type": "main", "index": 0 }
+          {
+            "node": "DUDOSA",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     },
     "VALIDA": {
       "main": [
         [
-          { "node": "Update row in sheet", "type": "main", "index": 0 }
+          {
+            "node": "Update row in sheet",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     },
     "INVALIDA": {
       "main": [
         [
-          { "node": "Update row in sheet", "type": "main", "index": 0 }
+          {
+            "node": "Update row in sheet",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     },
     "DUDOSA": {
       "main": [
         [
-          { "node": "Update row in sheet", "type": "main", "index": 0 }
+          {
+            "node": "Update row in sheet",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     },
     "Update row in sheet": {
       "main": [
         [
-          { "node": "If Dudosa", "type": "main", "index": 0 }
+          {
+            "node": "If Dudosa",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     },
     "If Dudosa": {
       "main": [
         [
-          { "node": "Send Dudosa Message", "type": "main", "index": 0 }
+          {
+            "node": "Send Dudosa Message",
+            "type": "main",
+            "index": 0
+          }
         ],
         [
-          { "node": "Send a text message", "type": "main", "index": 0 }
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     },
     "Error Trigger": {
       "main": [
         [
-          { "node": "Send Error Notification", "type": "main", "index": 0 }
+          {
+            "node": "Send Error Notification",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     }
   },
-  "active": false,
+  "active": true,
   "settings": {
     "executionOrder": "v1",
-    "errorWorkflow": ""
+    "binaryMode": "separate"
   },
-  "staticData": null,
+  "versionId": "1aab400a-6898-4ba7-84a3-7127b76ae69b",
   "meta": {
-    "templateCredsSetupCompleted": true
+    "instanceId": "de0ec55dd69c440bf87d74cdb94130ccebcbc55c2587e7f91dd1053238a58747"
   },
-  "pinData": {}
+  "id": "kssxdkMxsBft2uZ7",
+  "tags": []
 }
