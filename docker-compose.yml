@@ -1,23 +1,20 @@
+
 # =========================================================
 # docker-compose.yml
 # =========================================================
-# Este archivo define una arquitectura básica utilizando:
+# Arquitectura:
+# - PostgreSQL
+# - n8n
+# - ngrok
 #
-# 1. n8n         -> Plataforma de automatización de flujos
-# 2. PostgreSQL  -> Base de datos para almacenar información
-# 3. ngrok       -> Exponer servicios locales a internet
-# 4. OpenRouter  -> API externa utilizada por n8n mediante variables .env
+# Solución aplicada:
+# Se eliminó la exposición del puerto 5432 para evitar
+# conflictos con PostgreSQL instalado localmente
+# u otros contenedores.
 #
-# Todos los valores sensibles se almacenan en un archivo .env
-# para mantener seguridad y flexibilidad.
-#
-# Estructura recomendada:
-#
-# proyecto/
-# ├── docker-compose.yml
-# ├── .env
-# └── data/
-#
+# PostgreSQL seguirá funcionando correctamente porque
+# Docker permite comunicación interna entre servicios
+# usando la red "automation_network".
 # =========================================================
 
 version: '3.9'
@@ -26,16 +23,6 @@ services:
 
   # =====================================================
   # SERVICIO: PostgreSQL
-  # =====================================================
-  # Base de datos principal para n8n.
-  #
-  # PostgreSQL almacena:
-  # - workflows
-  # - credenciales
-  # - ejecuciones
-  # - configuraciones
-  #
-  # Los datos persistirán gracias al volumen "postgres_data".
   # =====================================================
 
   postgres:
@@ -49,8 +36,20 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
 
-    ports:
-      - "5432:5432"
+    # ===================================================
+    # IMPORTANTE:
+    # Se eliminó:
+    #
+    # ports:
+    #   - "5432:5432"
+    #
+    # Porque el puerto 5432 ya estaba ocupado
+    # en la máquina host.
+    #
+    # n8n puede conectarse internamente usando:
+    # host: postgres
+    # puerto: 5432
+    # ===================================================
 
     volumes:
       - postgres_data:/var/lib/postgresql/data
@@ -62,19 +61,6 @@ services:
 
   # =====================================================
   # SERVICIO: n8n
-  # =====================================================
-  # n8n es una plataforma de automatización tipo:
-  # - Zapier
-  # - Make
-  # - Power Automate
-  #
-  # Aquí se conecta a PostgreSQL para guardar
-  # toda la información importante.
-  #
-  # También utilizamos variables para:
-  # - autenticación
-  # - URL pública
-  # - zona horaria
   # =====================================================
 
   n8n:
@@ -96,17 +82,12 @@ services:
       # =================================================
       # AUTENTICACIÓN BÁSICA
       # =================================================
-      # Protege el panel de n8n con usuario y contraseña
-      # =================================================
       N8N_BASIC_AUTH_ACTIVE: true
       N8N_BASIC_AUTH_USER: ${N8N_USER}
       N8N_BASIC_AUTH_PASSWORD: ${N8N_PASSWORD}
 
       # =================================================
-      # CONFIGURACIÓN DE HOST
-      # =================================================
-      # ngrok generará una URL pública que será usada
-      # por n8n para webhooks y accesos externos.
+      # CONFIGURACIÓN HOST / WEBHOOKS
       # =================================================
       N8N_HOST: ${N8N_HOST}
       N8N_PORT: 5678
@@ -127,10 +108,7 @@ services:
       DB_POSTGRESDB_PASSWORD: ${POSTGRES_PASSWORD}
 
       # =================================================
-      # OPENROUTER API
-      # =================================================
-      # Esta variable podrá utilizarse dentro
-      # de workflows o nodos HTTP Request.
+      # OPENROUTER
       # =================================================
       OPENROUTER_API_KEY: ${OPENROUTER_API_KEY}
 
@@ -147,23 +125,6 @@ services:
 
   # =====================================================
   # SERVICIO: ngrok
-  # =====================================================
-  # ngrok expone n8n a internet.
-  #
-  # Ejemplo:
-  # https://random-url.ngrok-free.app
-  #
-  # Esto es útil para:
-  # - Webhooks
-  # - APIs externas
-  # - pruebas remotas
-  #
-  # IMPORTANTE:
-  # Debes crear una cuenta en:
-  # https://ngrok.com/
-  #
-  # Y obtener:
-  # - NGROK_AUTHTOKEN
   # =====================================================
 
   ngrok:
@@ -193,9 +154,6 @@ services:
 # =========================================================
 # VOLÚMENES
 # =========================================================
-# Permiten persistencia de datos aunque los contenedores
-# sean eliminados o reiniciados.
-# =========================================================
 
 volumes:
 
@@ -207,17 +165,8 @@ volumes:
 # =========================================================
 # RED PRIVADA
 # =========================================================
-# Todos los servicios se comunican internamente
-# utilizando esta red docker.
-# =========================================================
 
 networks:
 
   automation_network:
     driver: bridge
-
-
-
-# =========================================================
-# =============DESPLEGAR CONTENEDORES=================
-# Para iniciar la arquitectura, ejecuta:docker compose up -d
